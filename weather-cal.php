@@ -1,15 +1,31 @@
 <?php
 // Variables used in this script:
 $appkey = ''; // Get a API Key at https://openweathermap.org/appid
-$city = $_GET['city'];
-if(isset($_GET['units']))
-	$units = $_GET['units'];
-else
-	$units = "metric";
-$summary = 'Weather for your calendar — Vejnø';
 
+if (isset($_GET['city'])) {
+  $city = $_GET['city'];
+} else if (isset($_GET['zip'])) {
+  $zip = $_GET['zip'];
+}
+if (isset($_GET['country_code'])) {
+  $country_code = $_GET['country_code'];
+}
+
+if ($_GET['units'] == "metric") {
+  $units = "metric";
+} else if ($_GET['units'] == "imperial") {
+  $units = "imperial";
+} else {
+  $units = "metric";
+} 
+
+$summary = 'Weather for your calendar — Vejnø';
 // Loading json
-$string = file_get_contents("http://api.openweathermap.org/data/2.5/forecast/daily?q=" . urlencode($city) . "&units=" . urlencode($units) . "&cnt=16&appid=" . $appkey);
+if (isset($zip)) {
+  $string = file_get_contents("http://api.openweathermap.org/data/2.5/forecast/daily?zip=" . $zip . "," . $country_code . "&units=" . $units . "&cnt=16&appid=" . $appkey);
+} else {
+  $string = file_get_contents("http://api.openweathermap.org/data/2.5/forecast/daily?q=" . $city . "&units=" . $units . "&cnt=16&appid=" . $appkey);
+}
 $json = json_decode($string, true);
 //
 // Notes:
@@ -61,48 +77,59 @@ function escapeString($string) {
 BEGIN:VCALENDAR
 VERSION:2.0
 PRODID:-//vejnoe.dk//v0.1//EN
-X-WR-CALNAME:Weather for <?= $city . '
+X-WR-CALNAME:Weather for <?= $json['city']['name'] . '
 ' ?>
 X-APPLE-CALENDAR-COLOR:#ffffff
 CALSCALE:GREGORIAN
 
 <?php
-//print_r($json['list']);
-foreach ($json['list'] as $key => $val) {
-  //print_r($val);
-  switch ($val['weather'][0]['icon']) {
-  	case '01d':
-  		$icon = '☀️';
-  		break;
-  	case '02d':
-  		$icon = '🌤';
-  		break;
-  	case '03d':
-  		$icon = '☁️';
-  		break;
-  	case '04d':
-  		$icon = '☁️☁️';
-  		break;
-  	case '09d':
-  		$icon = '🌧';
-  		break;
-  	case '10d':
-  		$icon = '🌦';
-  		break;
-  	case '11d':
-  		$icon = '⛈';
-  		break;
-  	case '13d':
-  		$icon = '🌨';
-  		break;
-  	case '50d':
-  		$icon = '🌫';
-  		break;
-  	default:
-  		$icon = '🤔';
-  		break;
-  }
-	?>
+  //print_r($json['list']);
+  foreach ($json['list'] as $key => $val) {
+    //print_r($val);
+    switch ($val['weather'][0]['icon']) {
+      case '01d':
+        $icon = '☀️';
+        break;
+      case '01n':
+        $icon = '✨';
+        break;
+      case '02d':
+      case '02n':
+        $icon = '🌤';
+        break;
+      case '03d':
+      case '03n':
+        $icon = '☁️';
+        break;
+      case '04d':
+      case '04n':
+        $icon = '☁️☁️';
+        break;
+      case '09d':
+      case '09n':
+        $icon = '🌧';
+        break;
+      case '10d':
+      case '10n':
+        $icon = '🌦';
+        break;
+      case '11d':
+      case '11n':
+        $icon = '⛈';
+        break;
+      case '13d':
+      case '13n':
+        $icon = '🌨';
+        break;
+      case '50d':
+      case '50n':
+        $icon = '🌫';
+        break;
+      default:
+        $icon = '🤔';
+        break;
+    }
+?>
 
 BEGIN:VEVENT
 SUMMARY;LANGUAGE=en:<?= $icon ?> <?= round($val['temp']['day']); ?>°
@@ -111,7 +138,7 @@ CONTACT:Andreas Vejnø Andersen\, andreas@vejnoe.dk
 UID:<?= dayToCal($val['dt']) ?>@vejnoe.dk
 DTSTART;VALUE=DATE:<?= dayToCal($val['dt']) . '
 ' ?>
-LOCATION:<?= $city . '
+LOCATION:<?= $json['city']['name'] . '
 ' ?>
 X-MICROSOFT-CDO-ALLDAYEVENT:TRUE
 URL;VALUE=URI:http://www.vejnoe.dk
@@ -122,7 +149,7 @@ DESCRIPTION;LANGUAGE=en:<?= $val['weather'][0]['main'] . ': ' . $val['weather'][
 ' ?>
 END:VEVENT
 <?php
-	}
+  }
 ?>
 
 
