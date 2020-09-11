@@ -103,7 +103,7 @@ CALSCALE:GREGORIAN
         break;
       case '04d':
       case '04n':
-        $icon = '☁️☁️';
+        $icon = '☁️';
         break;
       case '09d':
       case '09n':
