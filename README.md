@@ -29,7 +29,7 @@ Key | Values
 ## System Requirements
 
 - A calendar application that supports .ical
-- A system the supports Unicode 7+ (From 2015)
+- A system the supports Unicode 7+ *(Released: 2014 June 16)*
 
 
 ## Check it out on Product Hunt
