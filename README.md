@@ -26,6 +26,11 @@ Key | Values
 `temperature` | `day` or `low-high`
 `location` | `show` or `hide`
 
+## System Requirements
+
+- A calendar application that supports .ical
+- A system the supports Unicode 7+ (From 2015)
+
 
 ## Check it out on Product Hunt
 
