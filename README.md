@@ -33,7 +33,7 @@ Key | Values
 
 *These are the emojis used so fare:*
 
-#### Event Title Emojis
+#### Emojis in Event Title
 
 Your Browser | Emoji code | API names
 ------------ | ---------- | ---------
@@ -48,7 +48,7 @@ Your Browser | Emoji code | API names
 🌫 | `:fog:` | `50d`, `50n`
 🤔 | `:thinking:` | No match
 
-#### Describtion Emojis
+#### Emojis in the Description
 
 Your Browser | Emoji code
 ------------ | ----------
