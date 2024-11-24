@@ -23,7 +23,7 @@ Key | Values
 --- | ------
 `city` | `city name` or <br>`city name,state code` or <br>`city name,state code,country code`
 `units` | `metric` or `imperial`
-`temperature` | `day` or `low-high`
+`temperature` | `day` or `low-high` or `high-low`
 `location` | `show` or `hide`
 
 ## System Requirements
