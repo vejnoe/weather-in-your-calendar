@@ -92,6 +92,8 @@ function makeDescriptions($data) {
 function displayTemp($temp, $display) {
   if ($display == 'day') {
     return round($temp['day']) . '°';
+  } else if ($display == 'high-low'){
+    return round($temp['max']) . '°/' . round($temp['min']) . '°';
   } else {
     return round($temp['min']) . '°/' . round($temp['max']) . '°';
   }
