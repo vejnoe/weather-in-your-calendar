@@ -31,7 +31,7 @@ Key | Values
 - A calendar application that supports .ical
 - A system the supports Unicode 7+ *(Released: 2014 June 16)*
 
-*These are the emojis used so fare:*
+*These are the emojis used so far:*
 
 #### Emojis in Event Title
 
@@ -44,7 +44,7 @@ Your Browser | Emoji code | API names
 🌧 | `:cloud_with_rain:` | `09d`, `09n`
 🌦 | `:sun_behind_rain_cloud:` | `10d`, `10n`
 ⛈ | `:cloud_with_lightning_and_rain:` | `11d`, `11n`
-🌨 | `:cloud_with_rain:` | `13d`, `13n`
+🌨 | `:cloud_with_snow:` | `13d`, `13n`
 🌫 | `:fog:` | `50d`, `50n`
 🤔 | `:thinking:` | No match
 
