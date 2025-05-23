@@ -32,9 +32,9 @@ if (isset($_GET['temperature'])) {
 
 // Loading json
 if (isset($zip)) {
-  $string = file_get_contents("http://api.openweathermap.org/data/2.5/forecast/daily?zip=" . $zip . "," . $country_code . "&units=" . $units . "&cnt=16&appid=" . $appkey);
+  $string = file_get_contents("https://api.openweathermap.org/data/2.5/forecast/daily?zip=" . $zip . "," . $country_code . "&units=" . $units . "&cnt=16&appid=" . $appkey);
 } else {
-  $string = file_get_contents("http://api.openweathermap.org/data/2.5/forecast/daily?q=" . $city . "&units=" . $units . "&cnt=16&appid=" . $appkey);
+  $string = file_get_contents("https://api.openweathermap.org/data/2.5/forecast/daily?q=" . $city . "&units=" . $units . "&cnt=16&appid=" . $appkey);
 }
 $json = json_decode($string, true);
 
@@ -126,7 +126,7 @@ DTSTART;VALUE=DATE:<?= dayToCal($val['dt']) . '
 ' ?> 
 <?php } ?>
 X-MICROSOFT-CDO-ALLDAYEVENT:TRUE 
-URL;VALUE=URI:http://www.vejnoe.dk 
+URL;VALUE=URI:https://www.vejnoe.dk 
 DTEND;VALUE=DATE:<?= nextDayToCal($val['dt']) . '
 ' ?>
 X-APPLE-TRAVEL-ADVISORY-BEHAVIOR:AUTOMATIC 
